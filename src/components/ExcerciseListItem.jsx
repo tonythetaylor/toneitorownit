@@ -1,15 +1,12 @@
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 const ExerciseListItem = ({ item }) => {
-    const capitalizeFirstLetter = (str) => {
-      return str.charAt(0).toUpperCase() + str.slice(1);
-    }; 
     return (
       <View style={styles.exerciseContainer}>
       <Text style={styles.exerciseName}>{item.name} </Text>
       <Text style={styles.exerciseSubtitle}>
-        {capitalizeFirstLetter(item.muscle)} |{" "}
-        {capitalizeFirstLetter(item.equipment)}
+        <Text style={styles.subValue}>{item.muscle}</Text> |{" "}
+        <Text style={styles.subValue}>{item.equipment}</Text>
       </Text>
     </View>
     )
@@ -29,6 +26,9 @@ const ExerciseListItem = ({ item }) => {
     exerciseSubtitle: {
       color: "#0007",
     },
+    subValue: {
+     textTransform: 'capitalize'
+    }
   });
 
   export default ExerciseListItem;
