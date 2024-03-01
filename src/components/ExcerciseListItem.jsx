@@ -27,7 +27,7 @@ const ExerciseListItem = ({ item }) => {
       color: "#0007",
     },
     subValue: {
-     textTransform: 'capitalize'
+     textTransform : 'capitalize'
     }
   });
 
