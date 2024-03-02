@@ -15,6 +15,7 @@ import { Redirect, Stack } from 'expo-router';
 import { useAuth } from '../../providers/AuthContext';
 import { useState } from 'react';
 import { useDebounce } from '@uidotdev/usehooks';
+import { TextInput } from 'react-native-gesture-handler';
 
 const exercisesQuery = gql`
   query exercises($muscle: String, $name: String, $offset: Int) {
@@ -68,7 +69,7 @@ export default function ExercisesScreen() {
 
   return (
     <View style={styles.container}>
-      <Stack.Screen
+    {/* <Stack.Screen
         options={{
           headerSearchBarOptions: {
             placeholder: 'Search...',
@@ -76,7 +77,15 @@ export default function ExercisesScreen() {
             hideWhenScrolling: false,
           },
         }}
+      /> */}
+      <View style={styles.inputContainer}>
+      <TextInput
+        value={search}
+        onChangeText={setSearch}
+        placeholder="Search workouts..."
+        style={styles.input}
       />
+      </View>
 
       <FlatList
         data={exercises}
@@ -97,6 +106,20 @@ export default function ExercisesScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    gap: 10,
+  },
+  inputContainer: {
+    padding: 10,
+    borderRadius: 5,
+    justifyContent: 'center',
+    backgroundColor: "white",
+    fontWeight: '600'
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: 'gainsboro',
+    padding: 10,
+    borderRadius: 5,
     justifyContent: 'center',
   },
 });
