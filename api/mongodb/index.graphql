@@ -10,7 +10,7 @@ type Root {
 }
 
 type Query {
-  sets: Root
+  sets(exercise: String!):  Root
     @rest(
       method: POST
       endpoint: "https://us-east-1.aws.data.mongodb-api.com/app/data-dcudl/endpoint/data/v1/action/find"
@@ -20,13 +20,16 @@ type Query {
           name: "api-key"
           value: "XLKy0mEq7TYsHL7QevG4BAPXgoFQVGOfEKs7wsIqsd8cUIotMJ3uVJ1lFItGOqZM"
         }
-      ],
+      ]
       postbody: """
-    { 
-    "collection": "sets",
-    "dataSource": "Cluster5",
-    "database": "workouts"
-    }
+      {
+      "collection": "sets",
+      "dataSource": "Cluster5",
+      "database": "workouts",
+      "filter": {
+          "exercise": "{{ .Get "exercise" }}"
+         }
+      }
       """
     )
 }
