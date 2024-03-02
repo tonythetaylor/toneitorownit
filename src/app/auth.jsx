@@ -12,7 +12,7 @@ const AuthScreen = () => {
   };
 
   if (username) {
-    return <Redirect href={'/'} />;
+    return <Redirect href={'/home'} />;
   }
 
   return (

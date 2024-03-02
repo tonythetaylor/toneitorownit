@@ -52,7 +52,7 @@ export default function ExerciseDetailsScreen() {
 
   return (
     <View style={styles.container}>
-      <Stack.Screen options={{ title: exercise.name }} />
+      <Stack.Screen options={{ title: exercise.name, headerBackTitleVisible: false}} />
 
       <SetsList
         exerciseName={exercise.name}
