@@ -50,9 +50,13 @@ const ExerciseDetailsScreen = () => {
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.container}>
       <Stack.Screen options={{ title: exercise.name }} />
-      <View style={styles.panel}>
+      <SetsList 
+      ListHeaderComponent={() => (
+        <View style={{ gap: 5}}>
+        
+        <View style={styles.panel}>
         <Text style={styles.exerciseName}>{exercise.name} </Text>
         <Text style={styles.exerciseSubtitle}>
           <Text style={styles.subValue}>{exercise.muscle}</Text> |{" "}
@@ -76,15 +80,17 @@ const ExerciseDetailsScreen = () => {
       </View>
 
       <NewSetInput exerciseName={exercise.name} />
-      <SetsList />
-    </ScrollView>
+      </View>
+
+      )}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    gap: 10,
   },
   panel: {
     backgroundColor: "white",

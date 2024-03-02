@@ -25,7 +25,6 @@ const NewSetInput = ({ exerciseName }) => {
     mutationFn: (newSet)  => graphqlClient.request(mutationDocument, { newSet })
   })
   const addSet = () => {
-    console.warn("add set", reps, weight);
     const newSet = {
         exercise: exerciseName,
         reps: Number.parseInt(reps),
