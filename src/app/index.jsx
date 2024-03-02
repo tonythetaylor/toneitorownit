@@ -38,7 +38,7 @@ export default function ExercisesScreen() {
     <View style={styles.container}>
       <FlatList
         data={data?.exercises}
-        contentContainerStyle={{ gap: 10 }}
+        contentContainerStyle={{ gap: 5 }}
         keyExtractor={(item, index) => item.name + index}
         renderItem={({ item }) => <ExerciseListItem item={item} />}
       />

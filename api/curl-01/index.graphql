@@ -1,0 +1,37 @@
+type InsertSetResponse {
+  insertedId: String
+}
+
+input NewSet {
+  exercise: String!
+  reps: Int!
+  weight: Float
+}
+
+type Mutation {
+  insertSet(
+    document: NewSet!
+    collection: String!
+    dataSource: String!
+    database: String!
+  ): InsertSetResponse
+    @rest(
+      method: POST
+      endpoint: "https://us-east-1.aws.data.mongodb-api.com/app/data-dcudl/endpoint/data/v1/action/insertOne"
+      headers: [
+        { name: "accept", value: "application/json" }
+        { name: "access-control-request-headers", value: "*" }
+        {
+          name: "apikey"
+          value: "XLKy0mEq7TYsHL7QevG4BAPXgoFQVGOfEKs7wsIqsd8cUIotMJ3uVJ1lFItGOqZM"
+        }
+      ]
+      # postbody: """
+      #{
+      #"collection": "sets",
+      #"dataSource": "Cluster5",
+      #"database": "workouts"
+      #}
+      #"""
+    )
+}

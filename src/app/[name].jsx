@@ -1,31 +1,38 @@
-import { Text, View, StyleSheet, ScrollView, ActivityIndicator } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  ScrollView,
+  ActivityIndicator,
+} from "react-native";
 import { useLocalSearchParams, withLayoutContext } from "expo-router";
 import exercises from "../../assets/data/exercises.json";
 import { Stack } from "expo-router";
 import { useState } from "react";
-import {gql} from 'graphql-request'
-import {useQuery} from '@tanstack/react-query'
-import client from '../graphqlClient'
+import { gql } from "graphql-request";
+import { useQuery } from "@tanstack/react-query";
+import graphqlClient from "../graphqlClient";
 import NewSetInput from "../components/NewSetInput";
+import SetsList from "../components/SetsList";
 
 const exerciseQuery = gql`
-query exercises($name: String) {
-  exercises(name: $name) {
-    muscle
-    name
-    instructions
-    equipment
+  query exercises($name: String) {
+    exercises(name: $name) {
+      muscle
+      name
+      instructions
+      equipment
+    }
   }
-}
-`
+`;
 
 const ExerciseDetailsScreen = () => {
-  const {name} = useLocalSearchParams();
+  const { name } = useLocalSearchParams();
 
-  const {data, isLoading, error} = useQuery({
-    queryKey: ['exercises', name],
-    queryFn: () => client.request(exerciseQuery, {name})
-  })
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["exercises", name],
+    queryFn: () => graphqlClient.request(exerciseQuery, { name }),
+  });
   const [isInstructionExpanded, setIsInstructionExpanded] = useState(false);
 
   if (isLoading) {
@@ -33,11 +40,11 @@ const ExerciseDetailsScreen = () => {
   }
 
   if (error) {
-      return <Text>Failed to fetch data</Text>;
+    return <Text>Failed to fetch data</Text>;
   }
 
-  const exercise = data.exercises[0]
-  
+  const exercise = data.exercises[0];
+
   if (!exercise) {
     return <Text>Exercise not found</Text>;
   }
@@ -68,7 +75,8 @@ const ExerciseDetailsScreen = () => {
         </Text>
       </View>
 
-      <NewSetInput />
+      <NewSetInput exerciseName={exercise.name} />
+      <SetsList />
     </ScrollView>
   );
 };
