@@ -6,7 +6,8 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@shopify/react-native-skia": "0.1.221",
@@ -20,6 +21,7 @@
     "expo-status-bar": "~1.11.1",
     "graphql": "^15.8.0",
     "graphql-request": "^6.1.0",
+    "patch-package": "^8.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.73.4",
